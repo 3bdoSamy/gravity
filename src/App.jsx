@@ -54,6 +54,7 @@ function App() {
     manifestUrl: '',
     group: '',
     logo: '',
+    enableP2P: true,
     drmScheme: '',
     clearKeys: '',
     licenseUrl: '',
@@ -132,6 +133,7 @@ function App() {
       manifestUrl: '',
       group: '',
       logo: '',
+      enableP2P: true,
       drmScheme: '',
       clearKeys: '',
       licenseUrl: '',
@@ -194,6 +196,7 @@ function App() {
       manifestUrl: '',
       group: '',
       logo: '',
+      enableP2P: true,
       drmScheme: '',
       clearKeys: '',
       licenseUrl: '',
@@ -276,6 +279,7 @@ function App() {
               userAgent={activeConfig.userAgent}
               referrer={activeConfig.referrer}
               authorization={activeConfig.authorization}
+              enableP2P={activeConfig.enableP2P !== false}
               autoPlay={true}
             />
           ) : (
