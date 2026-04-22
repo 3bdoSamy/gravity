@@ -12,8 +12,8 @@ const loadLibraryFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_library');
     return saved ? JSON.parse(saved) : [];
-  } catch (e) {
-    console.error('Failed to parse library:', e);
+  } catch (_e) {
+    console.error('Failed to parse library:', _e);
     return [];
   }
 };
@@ -22,7 +22,7 @@ const loadCollapsedFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_collapsed_groups');
     return saved ? JSON.parse(saved) : {};
-  } catch (e) {
+  } catch {
     return {};
   }
 };
@@ -31,7 +31,7 @@ const loadPrefsFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_prefs');
     return saved ? JSON.parse(saved) : { sortMode: 'alphabetical', viewMode: 'grid', gridSize: 'medium' };
-  } catch (e) {
+  } catch {
     return { sortMode: 'alphabetical', viewMode: 'grid', gridSize: 'medium' };
   }
 };
@@ -54,6 +54,7 @@ function App() {
     manifestUrl: '',
     group: '',
     logo: '',
+    enableP2P: true,
     drmScheme: '',
     clearKeys: '',
     licenseUrl: '',
@@ -101,16 +102,6 @@ function App() {
     }));
   };
 
-  const collapseAll = () => {
-    const allCollapsed = {};
-    sortedGroups.forEach(g => allCollapsed[g] = true);
-    setCollapsedGroups(allCollapsed);
-  };
-
-  const expandAll = () => {
-    setCollapsedGroups({});
-  };
-
   const handlePlay = (e) => {
     if (e) e.preventDefault();
     setActiveConfig({ ...formConfig });
@@ -132,6 +123,7 @@ function App() {
       manifestUrl: '',
       group: '',
       logo: '',
+      enableP2P: true,
       drmScheme: '',
       clearKeys: '',
       licenseUrl: '',
@@ -194,6 +186,7 @@ function App() {
       manifestUrl: '',
       group: '',
       logo: '',
+      enableP2P: true,
       drmScheme: '',
       clearKeys: '',
       licenseUrl: '',
@@ -276,6 +269,7 @@ function App() {
               userAgent={activeConfig.userAgent}
               referrer={activeConfig.referrer}
               authorization={activeConfig.authorization}
+              enableP2P={activeConfig.enableP2P !== false}
               autoPlay={true}
             />
           ) : (

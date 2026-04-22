@@ -295,6 +295,21 @@ https://stream.url/manifest.mpd`}
                                 <label>Authorization</label>
                                 <input type="text" name="authorization" value={config.authorization || ''} onChange={handleChange} placeholder="Bearer token..." />
                             </div>
+                            <div className="form-group">
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        name="enableP2P"
+                                        checked={config.enableP2P !== false}
+                                        onChange={(e) => onConfigChange(prev => ({ ...prev, enableP2P: e.target.checked }))}
+                                        style={{ width: 'auto' }}
+                                    />
+                                    Enable P2P media sharing (WebRTC)
+                                </label>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px', display: 'block' }}>
+                                    Uses P2P Media Loader for HLS/DASH segment sharing when supported by the browser.
+                                </span>
+                            </div>
                         </div>
                     )}
 
