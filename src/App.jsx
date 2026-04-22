@@ -12,8 +12,8 @@ const loadLibraryFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_library');
     return saved ? JSON.parse(saved) : [];
-  } catch (e) {
-    console.error('Failed to parse library:', e);
+  } catch (_e) {
+    console.error('Failed to parse library:', _e);
     return [];
   }
 };
@@ -22,7 +22,7 @@ const loadCollapsedFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_collapsed_groups');
     return saved ? JSON.parse(saved) : {};
-  } catch (e) {
+  } catch {
     return {};
   }
 };
@@ -31,7 +31,7 @@ const loadPrefsFromStorage = () => {
   try {
     const saved = localStorage.getItem('gravity_prefs');
     return saved ? JSON.parse(saved) : { sortMode: 'alphabetical', viewMode: 'grid', gridSize: 'medium' };
-  } catch (e) {
+  } catch {
     return { sortMode: 'alphabetical', viewMode: 'grid', gridSize: 'medium' };
   }
 };
@@ -100,16 +100,6 @@ function App() {
       ...prev,
       [group]: !prev[group]
     }));
-  };
-
-  const collapseAll = () => {
-    const allCollapsed = {};
-    sortedGroups.forEach(g => allCollapsed[g] = true);
-    setCollapsedGroups(allCollapsed);
-  };
-
-  const expandAll = () => {
-    setCollapsedGroups({});
   };
 
   const handlePlay = (e) => {
