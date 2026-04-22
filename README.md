@@ -29,6 +29,7 @@ A modern, feature-rich network stream player built with React and Shaka Player. 
 - **Search and Filter** - Quickly find channels across your library
 - **Multiple View Modes** - Grid and list layouts with adjustable sizing
 - **Custom Headers** - Set User-Agent, Referrer, and Authorization headers
+- **Optional P2P Delivery** - Enable WebRTC segment sharing with P2P Media Loader for popular streams
 - **Responsive Design** - Optimized for desktop and tablet displays
 
 ---
@@ -110,6 +111,12 @@ Configure request headers for streams that require authentication:
 - **Referrer** - Origin URL for hotlink protection
 - **Authorization** - Bearer token or API key
 
+### P2P Delivery
+
+- Open **Advanced Options** in the sidebar and keep **Enable P2P media sharing** checked.
+- Gravity will attempt to load the Novage P2P Media Loader Shaka module and bind it to Shaka Player.
+- If P2P is unavailable (unsupported browser/network restrictions), playback automatically falls back to direct CDN/origin delivery.
+
 ---
 
 ## Technology Stack
@@ -119,6 +126,7 @@ Configure request headers for streams that require authentication:
 | Framework | React 19 |
 | Build Tool | Vite 7 |
 | Player Engine | Shaka Player 4.x |
+| P2P Engine | P2P Media Loader (Shaka integration via CDN module) |
 | Styling | Vanilla CSS |
 | Storage | localStorage |
 
